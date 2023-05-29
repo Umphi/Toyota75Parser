@@ -1,15 +1,12 @@
-import configparser
 import parse, collate, compose
 
 def main():
-    config = configparser.ConfigParser()
-    config.read("settings.ini")
     print("Downloading partial images")
-    parse.parse(config["Car"]["id"])
+    parse.main()
     print("Collating parts into full pages")
-    collate.collate()
+    collate.main()
     print("Composing images into PDF")
-    compose.compose()
+    compose.main()
     print("Done!")
 
 if __name__ == "__main__":
