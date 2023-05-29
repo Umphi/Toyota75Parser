@@ -1,2 +1,9 @@
 [Car]
 id=60002190A
+
+[Proxy]
+enabled=False
+http=
+https=
+username=
+password=
