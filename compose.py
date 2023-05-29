@@ -1,7 +1,6 @@
 from PIL import Image
 
-import os
-import re
+import os, re
 
 from configloader import load_config
 

@@ -1,5 +1,7 @@
 from PIL import Image
+
 import os
+
 from configloader import load_config
 
 def collate(carid):

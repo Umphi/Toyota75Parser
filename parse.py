@@ -1,11 +1,11 @@
 from multiprocessing import cpu_count, Pool
 from multiprocessing.pool import ThreadPool
+from requests.auth import HTTPProxyAuth
 from bs4 import BeautifulSoup
 
 import requests, shutil, os
 
 from configloader import load_config
-from requests.auth import HTTPProxyAuth
 
 def parse_by_args(args):
     url, carid, page, tile, proxies, auth = args[0], args[1], args[2], args[3], args[4], args[5]
