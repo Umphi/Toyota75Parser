@@ -1,28 +1,24 @@
 from PIL import Image
 import os
+from configloader import load_config
 
-def collate():
-    pagecount = len(os.listdir("./imgs")) + 1
-    width, height = Image.open('./imgs/1/img1.jpg').size
+def collate(carid):
+    pagecount = len(os.listdir(f"./imgs/{carid}")) + 1
+    width, height = Image.open(f'./imgs/{carid}/1/img1.jpg').size
     for imagename in range(1,pagecount):
         img = Image.new('RGB', (width*2, height*3))
-        img1 = Image.open(f'./imgs/{imagename}/img1.jpg')
-        img2 = Image.open(f'./imgs/{imagename}/img2.jpg')
-        img3 = Image.open(f'./imgs/{imagename}/img3.jpg')
-        img4 = Image.open(f'./imgs/{imagename}/img4.jpg')
-        img5 = Image.open(f'./imgs/{imagename}/img5.jpg')
-        img6 = Image.open(f'./imgs/{imagename}/img6.jpg')
+        for tilenum in range(1,7):
+            tile = Image.open(f'./imgs/{carid}/{imagename}/img{tilenum}.jpg')
+            img.paste(tile, ( width if tilenum % 2 == 0 else 0 , (tilenum - 1) // 2 * height))
 
-        img.paste(img1, (0,0))
-        img.paste(img2, (width,0))
-        img.paste(img3, (0,height))
-        img.paste(img4, (width,height))
-        img.paste(img5, (0,height*2))
-        img.paste(img6, (width,height*2))
+        if not os.path.exists(f"./imgs_full/{carid}"):
+            os.makedirs(f"./imgs_full/{carid}")
+        img.save(f"./imgs_full/{carid}/{imagename}.jpg")
 
-        if not os.path.exists("./imgs_o"):
-            os.makedirs("./imgs_o")
-        img.save(f"./imgs_o/{imagename}.jpg")
+def main():
+    config = load_config("settings.ini")
+    carid = config["Car"]["id"]
+    collate(carid)
 
 if __name__ == "__main__":
-    collate()
+    main()
