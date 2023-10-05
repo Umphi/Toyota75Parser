@@ -9,7 +9,6 @@ You need to install these on your system first:
 These are the libraries from pip that the project requires:
 
 * [requests](https://pypi.org/project/requests/)
-* [bs4](https://pypi.org/project/beautifulsoup4/)
 * [Pillow](https://pypi.org/project/Pillow/)
 
 Also, requirements.txt file can be used to install necessary dependencies: \
