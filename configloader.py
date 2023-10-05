@@ -1,4 +1,6 @@
-import configparser, os
+import configparser
+import os
+
 
 def load_config(filename):
     if not os.path.exists(f"./settings.ini"):

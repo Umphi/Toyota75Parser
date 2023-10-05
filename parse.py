@@ -1,11 +1,11 @@
 from multiprocessing import cpu_count, Pool
-from multiprocessing.pool import ThreadPool
 from requests.auth import HTTPProxyAuth
-from bs4 import BeautifulSoup
 
-import requests, shutil, os
+import requests
+import os
 
 from configloader import load_config
+
 
 def parse_by_args(args):
     url, carid, page, tile, proxies, auth = args[0], args[1], args[2], args[3], args[4], args[5]
@@ -18,6 +18,7 @@ def parse_by_args(args):
             with open(f"./imgs/{carid}/{page}/img{tile}.jpg", 'wb') as f:
                 f.write(r.content)
             return 0
+
 
 def download_parallel():
     config = load_config("settings.ini")
@@ -46,8 +47,10 @@ def download_parallel():
     pool.close()
     pool.join()
 
+
 def main():
     download_parallel()
+
 
 if __name__ == "__main__":
     main()

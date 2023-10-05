@@ -1,4 +1,7 @@
-import parse, collate, compose
+import parse
+import collate
+import compose
+
 
 def main():
     print("Downloading partial images")
@@ -8,6 +11,7 @@ def main():
     print("Composing images into PDF")
     compose.main()
     print("Done!")
+
 
 if __name__ == "__main__":
     main()
